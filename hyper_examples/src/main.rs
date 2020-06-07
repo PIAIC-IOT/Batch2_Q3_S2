@@ -1,5 +1,5 @@
 // -------------------------------------------------------------------------
-// ------------------------------ Example 1 --------------------------------
+// -------------- Example 1 : Getting started with server ------------------
 // -------------------------------------------------------------------------
 
 // use std::convert::Infallible;
@@ -15,6 +15,7 @@
 
 //     // A `Service` is needed for every connection, so this
 //     // creates one from our `hello_world` function.
+
 //     let make_svc = make_service_fn(|_conn| async {
 //         // service_fn converts our function into a `Service`
 //         Ok::<_, Infallible>(service_fn(hello_world))
@@ -33,7 +34,7 @@
 // }
 
 // -------------------------------------------------------------------------
-// ------------------------------ Example 2 --------------------------------
+// ------------- Example 2 : Getting Started with server -------------------
 // -------------------------------------------------------------------------
 
 /*
@@ -74,59 +75,65 @@ pub async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
 */
 
 // -------------------------------------------------------------------------
-// ------------------------------ Example 3 --------------------------------
+// -------------------------- Example 3 : Routing --------------------------
 // -------------------------------------------------------------------------
 
-/*
-use std::convert::Infallible;
-use hyper::service::{make_service_fn, service_fn};
-use hyper::{Body, Request, Response, Server, Method, StatusCode};
 
-async fn echo(req : Request<Body>) -> Result<Response<Body>, Infallible> {
-    let mut response = Response::new(Body::empty());
+// use std::convert::Infallible;
+// use hyper::service::{make_service_fn, service_fn};
+// use hyper::{Body, Request, Response, Server, Method, StatusCode};
 
-    match (req.method(), req.uri().path()) {
-        (&Method::GET, "/") => {
-            *response.body_mut() = Body::from("Try POSTing data to /echo");
-        },
-        (&Method::POST, "/echo") => {
-            *response.body_mut() = req.into_body();
-        },
-        _ => {
-            *response.status_mut() = StatusCode::NOT_FOUND;
-        },
-    };
+// async fn echo(req : Request<Body>) -> Result<Response<Body>, Infallible> {
+//     let mut response = Response::new(Body::empty());
 
-    Ok(response)
-}
+//     match (req.method(), req.uri().path()) {
+//         (&Method::GET, "/") => {
+//             *response.body_mut() = Body::from("Try POSTing data to /echo");
+//         },
+//         (&Method::POST, "/echo") => {
+//             *response.body_mut() = req.into_body();
+//         },
+//         _ => {
+//             *response.status_mut() = StatusCode::NOT_FOUND;
+//         },
+//     };
 
-#[tokio::main]
-pub async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
-    pretty_env_logger::init();
+//     Ok(response)
+// }
 
-    // For every connection, we must make a `Service` to handle all
-    // incoming HTTP requests on said connection.
-    let make_svc = make_service_fn(|_conn| {
-        // This is the `Service` that will handle the connection.
-        // `service_fn` is a helper to convert a function that
-        // returns a Response into a `Service`.
-        async { Ok::<_, Infallible>(service_fn(echo)) }
-    });
+// #[tokio::main]
+// pub async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
+//     pretty_env_logger::init();
 
-    // Creating socket address on which server will respond
-    let addr = ([127, 0, 0, 1], 3000).into();
+//     // For every connection, we must make a `Service` to handle all
+//     // incoming HTTP requests on said connection.
+//     let make_svc = make_service_fn(|_conn| {
+//         // This is the `Service` that will handle the connection.
+//         // `service_fn` is a helper to convert a function that
+//         // returns a Response into a `Service`.
+//         async { Ok::<_, Infallible>(service_fn(echo)) }
+//     });
 
-    // We'll bind to 127.0.0.1:3000
-    // Also assigning serice to the server 
-    let server = Server::bind(&addr).serve(make_svc);
+//     // Creating socket address on which server will respond
+//     let addr = ([127, 0, 0, 1], 3000).into();
 
-    println!("Listening on http://{}", addr);
+//     // We'll bind to 127.0.0.1:3000
+//     // Also assigning serice to the server 
+//     let server = Server::bind(&addr).serve(make_svc);
 
-    server.await?;
+//     println!("Listening on http://{}", addr);
 
-    Ok(())
-}
-*/
+//     server.await?;
+
+//     Ok(())
+// }
+
+
+
+
+// -------------------------------------------------------------------------
+// -------------------------- Example 4 : Routing --------------------------
+// -------------------------------------------------------------------------
 
 use futures::TryStreamExt;
 use hyper::service::{make_service_fn, service_fn};
@@ -192,4 +199,3 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
 
     Ok(())
 }
-
