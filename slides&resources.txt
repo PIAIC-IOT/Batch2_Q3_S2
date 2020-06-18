@@ -1,0 +1,11 @@
+# Link for microservices lecture - related resources are inside
+https://docs.google.com/presentation/d/1Q9Cp_mXhdNxr1MvJWv-tR4cx5lDrVmQmUyd63inhDcc/edit?usp=sharing
+
+# Link for client-server architecture lecture - related resources are inside
+https://docs.google.com/presentation/d/1BsMGFE5ObVhAJGGYplwNYD4ECIpSu89BZ1dUj6hIInc/edit?usp=sharing
+
+# Link for async lecture - related resources are inside
+https://docs.google.com/presentation/d/1PUusQ7afuIXBJBWvO13_GW89I1qbJB5SI11zf4gdCE4/edit?usp=sharing
+
+# Link for reqwest and Hyper lecture - related resources are inside
+https://docs.google.com/presentation/d/1GLys1Yc16hhBKvTE80fr7rTBKJDS2sYQfNR_DHPwFfQ/edit?usp=sharing
