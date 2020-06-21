@@ -1,0 +1,25 @@
+#1 Download work statation/ virtual box
+https://my.vmware.com/en/web/vmware/downloads/info/slug/desktop_end_user_computing/vmware_workstation_pro/15_0
+
+
+#2 Install workstation
+
+
+#3 Download reaspberry pi desktop image
+https://www.raspberrypi.org/downloads/raspberry-pi-desktop/
+
+#4 Create a VM for debian 64
+- Start create VM wizard
+- Select "Custom" option
+- Under "Virtual Machine Hardware Compatibility" section, select Worksatation XX.x (most latest version beign appear)
+- Under "Install operating system from" section, select "I will install operating system later"
+- Select "Linux" as GUSET OPERATING SYSTEM and "Debian 10.x 64" as VERSION
+- On next screen leave as default
+- Assign "Total Processor core: 2" with any combination
+- Assign at least 2GB of ram (Should be less than half of your physical machine's ram)
+- Select "NAT" under networking section
+- Leave I/O controller on DEFAULT
+- Leave Virtual Disk type on DEFAULT
+- Under "Disk" section, select "Create a newvirtual Disk"
+- Allocate new disk size and provisioning types
+	- 20 GB is sufficient
