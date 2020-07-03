@@ -153,7 +153,7 @@ async fn echo(req: Request<Body>) -> Result<Response<Body>, hyper::Error> {
         (&Method::POST, "/echo") => Ok(Response::new(req.into_body())),
 
         // Convert to uppercase before sending back to client using a stream.
-        (&Method::POST, "/echo/uppercase") => {
+        (&Method::POST, "/uppercase") => {
             let chunk_stream = req.into_body().map_ok(|chunk| {
                 chunk
                     .iter()
@@ -187,7 +187,7 @@ async fn echo(req: Request<Body>) -> Result<Response<Body>, hyper::Error> {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
-    let addr = ([127, 0, 0, 1], 3000).into();
+    let addr = ([192, 168, 0, 104], 3000).into();
 
     let service = make_service_fn(|_| async { Ok::<_, hyper::Error>(service_fn(echo)) });
 
