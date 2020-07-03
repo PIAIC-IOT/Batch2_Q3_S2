@@ -133,52 +133,17 @@
 // ---------------------------------------------------
 // Multiple async fn using block_on delayed for making difference
 
-// use std::thread;
-// use futures::executor::block_on;
-// use std::time::Duration;
-
-// async fn get_sum() -> f32 {
-//     65.2
-// }
-
-// async fn calculate_grade(sum : f32) {
-
-//     thread::sleep(Duration::from_secs(2));
-//     if sum > 50.0 {
-//         println!("Candidate is passed");
-//     } else {
-//         println!("Candidate is failed");
-//     }
-// }
-
-// async fn print_sum() {
-//     println!("Sum is {}",54.2);
-// }
-
-// fn main() {
-//     let sum = block_on(get_sum());
-//     block_on(calculate_grade(sum));
-//     block_on(print_sum());
-// }
-
-
-// -------------- Example 1.3-b3 ---------------------
-// ---------------------------------------------------
-// Multiple async fn using .await delayed for making difference
-
-
 use std::thread;
 use futures::executor::block_on;
 use std::time::Duration;
 
 async fn get_sum() -> f32 {
-
     65.2
 }
 
 async fn calculate_grade(sum : f32) {
 
-    thread::sleep(Duration::from_secs(3));
+    thread::sleep(Duration::from_secs(2));
     if sum > 50.0 {
         println!("Candidate is passed");
     } else {
@@ -186,25 +151,60 @@ async fn calculate_grade(sum : f32) {
     }
 }
 
-async fn print_sum(sum : f32) {
-    
-    println!("Sum is {}",sum);
-}
-
-async fn get_sum_and_calculate_grade() {
-    
-    let sum = get_sum().await;
-    calculate_grade(sum).await;
-}
-
-async fn oscillator() {
-    
-    let f1 = get_sum_and_calculate_grade();
-    let f2 = print_sum(50.62);
-
-    futures::join!(f2, f1);
+async fn print_sum() {
+    println!("Sum is {}",54.2);
 }
 
 fn main() {
-    block_on(oscillator());
+    let sum = block_on(get_sum());
+    block_on(calculate_grade(sum));
+    block_on(print_sum());
 }
+
+
+// -------------- Example 1.3-b3 ---------------------
+// ---------------------------------------------------
+// Multiple async fn using .await delayed for making difference
+
+
+// use std::thread;
+// use futures::executor::block_on;
+// use std::time::Duration;
+
+// async fn get_sum() -> f32 {
+
+//     65.2
+// }
+
+// async fn calculate_grade(sum : f32) {
+
+//     thread::sleep(Duration::from_secs(3));
+//     if sum > 50.0 {
+//         println!("Candidate is passed");
+//     } else {
+//         println!("Candidate is failed");
+//     }
+// }
+
+// async fn print_sum(sum : f32) {
+    
+//     println!("Sum is {}",sum);
+// }
+
+// async fn get_sum_and_calculate_grade() {
+    
+//     let sum = get_sum().await;
+//     calculate_grade(sum).await;
+// }
+
+// async fn oscillator() {
+    
+//     let f1 = get_sum_and_calculate_grade();
+//     let f2 = print_sum(50.62);
+
+//     futures::join!(f2, f1);
+// }
+
+// fn main() {
+//     task::block_on(oscillator());
+// }
